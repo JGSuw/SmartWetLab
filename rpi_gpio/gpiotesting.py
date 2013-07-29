@@ -48,8 +48,7 @@ if __name__ == '__main__':
     
     listener = door_listener(in_pin,out_pin)
     listener.start()
-    listener.stop
     
     raw_input("Enter anything to cease execution: ")
-    
-    pass
+    listener.stop()
+   
