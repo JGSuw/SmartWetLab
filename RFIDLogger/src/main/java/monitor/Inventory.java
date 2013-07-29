@@ -15,23 +15,21 @@
 package monitor;
 import java.util.Enumeration;
 import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Date;
-import java.util.Set;
 import java.util.Timer;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.jdom.Content;
+
 import org.jdom.Document;
 import org.jdom.Element;
 
 public class Inventory {
 	
 	private Hashtable<String,RFIDTag> inventory;
-	private String dataLog;
+	private String eventLog;
+	private String inventoryLog;
 	private long timeout = 1000;
 	private Timer timer;
 	private CheckInventory checker;
@@ -45,26 +43,55 @@ public class Inventory {
 			
 	}
 	
+	// New version lists both antenna fields if tag is seen by both
 	public synchronized void update(Document report, long timestamp){
+		
 		// Update the inventory
 		String EPC = getTagData(report.getRootElement(),"EPC_96");
 		String antennaID = "A" + getTagData(report.getRootElement(),"AntennaID");
 		if (inventory.containsKey(EPC)){
-			// First test for time out
-			if (timestamp - inventory.get(EPC).timeLastSeen <= timeout){
-				inventory.get(EPC).timeLastSeen=timestamp;
+			
+			//Update correct timeLastSeen field
+			switch(antennaID){
+			case "A1":
+				inventory.get(EPC).A1timeLastSeen = timestamp;
+				break;
+			case "A2":
+				inventory.get(EPC).A2timeLastSeen = timestamp;
+				break;
+			case "A3":
+				inventory.get(EPC).A3timeLastSeen = timestamp;
+				break;
+			case "A4":
+				inventory.get(EPC).A4timeLastSeen = timestamp;
+				break;
 			}
-			if (!antennaID.equals(inventory.get(EPC).antennaID)){
-			// Tag exited one field and entered another
-				dataLog = dataLog + Long.toString(timestamp) + "," + inventory.get(EPC).antennaID + "," + "EXIT" + "," + EPC + "\n";
-				System.out.println(Long.toString(timestamp) + "," + inventory.get(EPC).antennaID + "," + "EXIT" + "," + EPC);
-				dataLog = dataLog + Long.toString(timestamp) + "," + antennaID + "," + "ENTER" + "," + EPC + "\n";
+			
+			//Update location
+			if (!inventory.get(EPC).location.contains(antennaID)){
+				inventory.get(EPC).location += antennaID;
+				eventLog = eventLog + Long.toString(timestamp) + "," + antennaID + "," + "ENTER" + "," + EPC + "\n";
 				System.out.println(Long.toString(timestamp) + "," + antennaID + "," + "ENTER" + "," + EPC);
-				inventory.get(EPC).antennaID = antennaID;
+				
+			}		
+			
+			// OLD LOGIC BLOCK
+			if (!antennaID.equals(inventory.get(EPC).location)){
+			// Tag exited one field and entered another
+				
+				// Taking out code
+				//dataLog = dataLog + Long.toString(timestamp) + "," + inventory.get(EPC).antennaID + "," + "EXIT" + "," + EPC + "\n";
+				//System.out.println(Long.toString(timestamp) + "," + inventory.get(EPC).antennaID + "," + "EXIT" + "," + EPC);
+				//dataLog = dataLog + Long.toString(timestamp) + "," + antennaID + "," + "ENTER" + "," + EPC + "\n";
+				//System.out.println(Long.toString(timestamp) + "," + antennaID + "," + "ENTER" + "," + EPC);
+				//inventory.get(EPC).antennaID = antennaID;
+				
+				
 			}
 		} else {
 			// Add tag to inventory
-			dataLog = dataLog + Long.toString(timestamp) + "," + antennaID + "," + "ENTER" + "," + EPC + "\n";
+			eventLog = eventLog + Long.toString(timestamp) + "," + antennaID + "," + "ENTER" + "," + EPC + "\n";
+			inventoryLog = inventoryLog + Long.toString(timestamp) + "," + "1" + "," + EPC +"\n";
 			System.out.println(Long.toString(timestamp) + "," + antennaID + "," + "ENTER" + "," + EPC);
 			inventory.put(EPC,new RFIDTag(antennaID, timestamp));
 		}	
@@ -75,11 +102,43 @@ public class Inventory {
 		long timestamp = new Date().getTime();
 		Enumeration<String> e = inventory.keys();
  		while (e.hasMoreElements()== true){
-			String temp = e.nextElement();
-			if (timestamp - inventory.get(temp).timeLastSeen > timeout){
-				dataLog = dataLog + Long.toString(timestamp) + "," + inventory.get(temp).antennaID + "," + "EXIT" + "," + temp + "\n";
-				System.out.println(Long.toString(timestamp) + "," + inventory.get(temp).antennaID + "," + "EXIT" + "," + temp);
-				inventory.remove(temp);
+			String EPC = e.nextElement();
+
+			// Check for currency in each antenna field
+			if (inventory.get(EPC).location.contains("A1")){
+				if (timestamp - inventory.get(EPC).A1timeLastSeen >= timeout){
+				inventory.get(EPC).location = inventory.get(EPC).location.replace("A1", "");
+				eventLog = eventLog + Long.toString(timestamp) + "," + "A1" + "," + "EXIT" + "," + EPC + "\n";
+				System.out.println(Long.toString(timestamp) + "," + "A1" + "," + "EXIT" + "," + EPC);
+				}
+			}
+			if (inventory.get(EPC).location.contains("A2")){
+				if (timestamp - inventory.get(EPC).A2timeLastSeen >= timeout){
+				inventory.get(EPC).location = inventory.get(EPC).location.replace("A2", "");
+				eventLog = eventLog + Long.toString(timestamp) + "," + "A2" + "," + "EXIT" + "," + EPC + "\n";
+				System.out.println(Long.toString(timestamp) + "," + "A2" + "," + "EXIT" + "," + EPC);
+				}
+			}
+			if (inventory.get(EPC).location.contains("A3")){
+				if (timestamp - inventory.get(EPC).A3timeLastSeen >= timeout){
+				inventory.get(EPC).location = inventory.get(EPC).location.replace("A3", "");
+				eventLog = eventLog + Long.toString(timestamp) + "," + "A3" + "," + "EXIT" + "," + EPC + "\n";
+				System.out.println(Long.toString(timestamp) + "," + "A3" + "," + "EXIT" + "," + EPC);
+				}
+			}
+			if (inventory.get(EPC).location.contains("A4")){
+				if (timestamp - inventory.get(EPC).A4timeLastSeen >= timeout){
+				inventory.get(EPC).location = inventory.get(EPC).location.replace("A4", "");
+				eventLog = eventLog + Long.toString(timestamp) + "," + "A4" + "," + "EXIT" + "," + EPC + "\n";
+				System.out.println(Long.toString(timestamp) + "," + "A4" + "," + "EXIT" + "," + EPC);
+				}
+			}
+			
+			if (inventory.get(EPC).location.isEmpty()){
+				//System.out.println("tag" + " " + EPC + " no longer visible");
+				//timestamp,epc,1/0 one represents in a field and zero represents not in a field
+				inventoryLog = inventoryLog + Long.toString(timestamp) + "," + "0" + "," + EPC + "\n";
+				inventory.remove(EPC);
 			}
  		}
 	}
@@ -93,13 +152,14 @@ public class Inventory {
 		inventory = new Hashtable<String, RFIDTag>(128);
 		this.checker = new CheckInventory(this);
 		this.timer = new Timer();
-		dataLog = new String("All RFID tags shall be assimilated. \n");
+		eventLog = new String("Your RFID tags will be assimilated. \n");
+		inventoryLog = new String("Your RFID tags will be assimilated. \n");
 	}
 	
 	public void printLog(){
 		try {
 			Date date = new Date();
-			String filename = "/home/joey/SmartWetLab/RFIDLogger/dump/InventoryLog_" + Integer.toString(date.getMonth() + 1)+ "_" + Integer.toString(date.getDate()) + "_" + Integer.toString(date.getHours()) + ":" + Integer.toString(date.getMinutes()) + ".txt";
+			String filename = "/tmp/eventlog_" + Integer.toString(date.getMonth() + 1)+ "_" + Integer.toString(date.getDate()) + "_" + Integer.toString(date.getHours()) + ":" + Integer.toString(date.getMinutes()) + ".txt";
 			File file = new File(filename);
  
 			// if file doesn't exists, then create it
@@ -109,10 +169,39 @@ public class Inventory {
  
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
 			BufferedWriter bw = new BufferedWriter(fw);
-			bw.write(dataLog);
+			bw.write(eventLog);
 			bw.close();
- 
-			System.out.println("DONE \t" + filename);
+			
+			String filename2 = "/tmp/inventoryLog_" + Integer.toString(date.getMonth() + 1) + "_" + Integer.toString(date.getDate()) + "_" + Integer.toString(date.getHours()) + ":" + Integer.toString(date.getMinutes()) + ".txt";
+			File file2 = new File(filename2);
+			
+			if(!file2.exists()){
+				file2.createNewFile();
+			}
+			
+			fw = new FileWriter(file2.getAbsoluteFile());
+			bw = new BufferedWriter(fw);
+			bw.write(inventoryLog);
+			bw.close();
+			
+			//Testing printing using CUPS and thermal printer, just for fun
+			//FileInputStream octowriter = new FileInputStream(file);
+			//try {
+			//	CupsClient client = new CupsClient();
+			//	CupsPrinter def = client.getDefaultPrinter();
+			//	PrintRequestResult response;
+			//	response = def.print(new PrintJob.Builder(octowriter).build());
+			//	if (response.isSuccessfulResult()){
+			//		System.out.println("Hurray! Printed!");
+			//	} else {
+			//		System.out.println("Boo! Failure!");
+			//	}
+			//} catch (Exception e) {
+			//	// TODO Auto-generated catch block
+			//	e.printStackTrace();
+			//}
+			System.out.println();
+			System.out.println("DONE. Log file located at \t" + filename);
  
 		} catch (IOException e) {
 			e.printStackTrace();

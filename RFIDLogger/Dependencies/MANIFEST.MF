@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.8.2
+Created-By: 1.6.0_20-b02 (Sun Microsystems Inc.)
+Version: 0.6.3
+Built-By: info@cups4j.org
+Built-On: 11-05-2012 17:22:04
+Main-Class: org.cups4j.test.CupsTest
+

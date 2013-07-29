@@ -1,0 +1,44 @@
+<llrp:RO_ACCESS_REPORT xmlns:llrp="http://www.llrp.org/ltk/schema/core/encoding/xml/1.0" Version="1" MessageID="1881172925">
+  <llrp:TagReportData>
+    <llrp:EPC_96>
+      <llrp:EPC>e2009000170400841180a1df</llrp:EPC>
+    </llrp:EPC_96>
+    <llrp:ROSpecID>
+      <llrp:ROSpecID>1</llrp:ROSpecID>
+    </llrp:ROSpecID>
+    <llrp:SpecIndex>
+      <llrp:SpecIndex>1</llrp:SpecIndex>
+    </llrp:SpecIndex>
+    <llrp:InventoryParameterSpecID>
+      <llrp:InventoryParameterSpecID>9</llrp:InventoryParameterSpecID>
+    </llrp:InventoryParameterSpecID>
+    <llrp:AntennaID>
+      <llrp:AntennaID>1</llrp:AntennaID>
+    </llrp:AntennaID>
+    <llrp:PeakRSSI>
+      <llrp:PeakRSSI>-31</llrp:PeakRSSI>
+    </llrp:PeakRSSI>
+    <llrp:ChannelIndex>
+      <llrp:ChannelIndex>41</llrp:ChannelIndex>
+    </llrp:ChannelIndex>
+    <llrp:FirstSeenTimestampUTC>
+      <llrp:Microseconds>2004-01-17T14:51:34.961463-08:00</llrp:Microseconds>
+    </llrp:FirstSeenTimestampUTC>
+    <llrp:LastSeenTimestampUTC>
+      <llrp:Microseconds>2004-01-17T14:51:34.961463-08:00</llrp:Microseconds>
+    </llrp:LastSeenTimestampUTC>
+    <llrp:TagSeenCount>
+      <llrp:TagCount>1</llrp:TagCount>
+    </llrp:TagSeenCount>
+    <llrp:C1G2_PC>
+      <llrp:PC_Bits>12288</llrp:PC_Bits>
+    </llrp:C1G2_PC>
+    <llrp:C1G2_CRC>
+      <llrp:CRC>45196</llrp:CRC>
+    </llrp:C1G2_CRC>
+    <llrp:AccessSpecID>
+      <llrp:AccessSpecID>0</llrp:AccessSpecID>
+    </llrp:AccessSpecID>
+  </llrp:TagReportData>
+</llrp:RO_ACCESS_REPORT>
+

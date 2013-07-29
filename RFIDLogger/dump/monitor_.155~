@@ -1,0 +1,148 @@
+DEBUG [main]: Connection Established with 128.95.205.155 at 1372727170026
+INFO  [main]: Delete ROSPEC message ...
+INFO  [AnonymousIoService-3]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@3c330a
+INFO  [main]: Loading ADD_ROSPEC message from file ADD_ROSPEC.xml ...
+INFO  [main]: Sending ADD_ROSPEC message ...
+INFO  [main]: Addition of ROSPEC was successful
+INFO  [main]: Enable ROSPEC ...
+INFO  [main]: Start ROSPEC ...
+INFO  [AnonymousIoService-8]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@1011211
+INFO  [AnonymousIoService-8]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@a66e3f
+INFO  [AnonymousIoService-9]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@1e74a6e
+INFO  [AnonymousIoService-10]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@1d24038
+INFO  [AnonymousIoService-11]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@1398e0b
+INFO  [AnonymousIoService-12]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@dc6f00
+INFO  [AnonymousIoService-13]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@4b96f3
+INFO  [AnonymousIoService-14]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@eccc52
+INFO  [AnonymousIoService-15]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@10619b7
+INFO  [AnonymousIoService-15]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@182440f
+INFO  [AnonymousIoService-15]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@11b03b7
+INFO  [AnonymousIoService-16]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@990e62
+INFO  [AnonymousIoService-1]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@df2b8f
+INFO  [AnonymousIoService-2]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@9c8f13
+INFO  [AnonymousIoService-2]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@753711
+INFO  [AnonymousIoService-2]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@10984e0
+INFO  [AnonymousIoService-3]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@1a8859b
+INFO  [AnonymousIoService-4]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@2cd6c8
+INFO  [AnonymousIoService-5]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@1b67ae1
+INFO  [AnonymousIoService-5]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@13d8b48
+INFO  [AnonymousIoService-5]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@194743b
+INFO  [AnonymousIoService-6]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@19cc97d
+INFO  [AnonymousIoService-7]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@879541
+INFO  [AnonymousIoService-8]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@1a5b607
+INFO  [AnonymousIoService-8]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@51c603
+INFO  [AnonymousIoService-8]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@1b5950a
+INFO  [AnonymousIoService-9]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@18d46d4
+INFO  [AnonymousIoService-10]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@d5b121
+INFO  [AnonymousIoService-11]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@c8fa1e
+INFO  [AnonymousIoService-11]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@9cebe0
+INFO  [AnonymousIoService-12]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@15679f0
+INFO  [AnonymousIoService-13]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@4eb887
+INFO  [AnonymousIoService-14]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@3a2be1
+INFO  [AnonymousIoService-15]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@1147b94
+INFO  [AnonymousIoService-15]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@1bd3f6f
+INFO  [AnonymousIoService-16]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@a668fd
+INFO  [AnonymousIoService-1]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@7ef378
+INFO  [AnonymousIoService-2]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@fe7fb0
+INFO  [AnonymousIoService-3]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@edb9a5
+INFO  [AnonymousIoService-3]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@137398f
+INFO  [AnonymousIoService-4]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@e27724
+INFO  [AnonymousIoService-5]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@12bbffd
+INFO  [AnonymousIoService-6]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@1497eb8
+INFO  [AnonymousIoService-7]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@1e879e
+INFO  [AnonymousIoService-7]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@59d3ae
+INFO  [AnonymousIoService-8]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@158530c
+INFO  [AnonymousIoService-9]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@1b4607f
+INFO  [AnonymousIoService-10]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@12b63f6
+INFO  [AnonymousIoService-10]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@1afb02d
+INFO  [AnonymousIoService-11]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@1579bd8
+INFO  [AnonymousIoService-12]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@b8b6e9
+INFO  [AnonymousIoService-13]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@f08fe1
+INFO  [AnonymousIoService-14]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@17639c8
+INFO  [AnonymousIoService-14]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@cb8fc2
+INFO  [AnonymousIoService-15]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@4b3a2d
+INFO  [AnonymousIoService-16]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@d86395
+INFO  [AnonymousIoService-1]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@71e64d
+INFO  [AnonymousIoService-2]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@1c6ffd3
+INFO  [AnonymousIoService-2]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@1c5a4b7
+INFO  [AnonymousIoService-3]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@c11e94
+INFO  [AnonymousIoService-4]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@be902a
+INFO  [AnonymousIoService-5]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@ead8a8
+DEBUG [main]: Connection Established with 128.95.205.155 at 1372781984169
+INFO  [main]: Delete ROSPEC message ...
+DEBUG [main]: Error Occured: session is not yet established
+INFO  [main]: Loading ADD_ROSPEC message from file ADD_ROSPEC.xml ...
+INFO  [main]: Sending ADD_ROSPEC message ...
+DEBUG [main]: Error Occured: session is not yet established
+DEBUG [main]: Connection Established with 128.95.205.155 at 1372782875974
+INFO  [main]: Delete ROSPEC message ...
+INFO  [main]: Loading ADD_ROSPEC message from file ADD_ROSPEC.xml ...
+INFO  [main]: Sending ADD_ROSPEC message ...
+INFO  [main]: Addition of ROSPEC was successful
+INFO  [main]: Enable ROSPEC ...
+INFO  [main]: Start ROSPEC ...
+INFO  [AnonymousIoService-11]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@1a5b607
+INFO  [AnonymousIoService-11]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@2525d0
+INFO  [AnonymousIoService-15]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@a668fd
+INFO  [AnonymousIoService-15]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@136cbd0
+INFO  [AnonymousIoService-6]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@1318309
+INFO  [AnonymousIoService-6]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@1920208
+INFO  [AnonymousIoService-10]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@1035b2a
+INFO  [AnonymousIoService-10]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@15622eb
+INFO  [AnonymousIoService-14]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@175c6a4
+INFO  [AnonymousIoService-15]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@12bbffd
+INFO  [AnonymousIoService-2]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@12b63f6
+DEBUG [main]: Connection Established with 128.95.205.155 at 1372782976947
+INFO  [main]: Delete ROSPEC message ...
+INFO  [AnonymousIoService-3]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@75d86b
+INFO  [main]: Loading ADD_ROSPEC message from file ADD_ROSPEC.xml ...
+INFO  [main]: Sending ADD_ROSPEC message ...
+INFO  [main]: Addition of ROSPEC was successful
+INFO  [main]: Enable ROSPEC ...
+INFO  [main]: Start ROSPEC ...
+INFO  [AnonymousIoService-10]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@6c9c37
+INFO  [AnonymousIoService-10]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@157e43
+INFO  [AnonymousIoService-10]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@110710
+INFO  [AnonymousIoService-11]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@a668fd
+INFO  [AnonymousIoService-11]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@fe7fb0
+INFO  [AnonymousIoService-11]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@7108a1
+INFO  [AnonymousIoService-12]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@849077
+INFO  [AnonymousIoService-13]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@117353b
+INFO  [AnonymousIoService-14]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@1dd2285
+INFO  [AnonymousIoService-14]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@1057f08
+INFO  [AnonymousIoService-15]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@c36c6f
+INFO  [AnonymousIoService-16]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@1035b2a
+INFO  [AnonymousIoService-1]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@e7403
+INFO  [AnonymousIoService-2]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@1fbe10a
+INFO  [AnonymousIoService-2]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@1737e7f
+INFO  [AnonymousIoService-3]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@1446af8
+INFO  [AnonymousIoService-3]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@caff01
+INFO  [AnonymousIoService-4]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@1497eb8
+INFO  [AnonymousIoService-5]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@59d3ae
+INFO  [AnonymousIoService-5]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@158530c
+INFO  [AnonymousIoService-6]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@12b63f6
+INFO  [AnonymousIoService-6]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@1afb02d
+INFO  [AnonymousIoService-7]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@b8b6e9
+INFO  [AnonymousIoService-8]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@17639c8
+INFO  [AnonymousIoService-9]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@1c6ffd3
+INFO  [AnonymousIoService-10]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@c11e94
+INFO  [AnonymousIoService-10]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@be902a
+INFO  [AnonymousIoService-11]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@361bd0
+INFO  [AnonymousIoService-12]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@13f3437
+INFO  [AnonymousIoService-13]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@ceda5b
+INFO  [AnonymousIoService-14]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@e81502
+INFO  [AnonymousIoService-14]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@bb4521
+INFO  [AnonymousIoService-15]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@11cb14a
+INFO  [AnonymousIoService-16]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@1a79e76
+INFO  [AnonymousIoService-1]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@16b9190
+INFO  [AnonymousIoService-2]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@6f2775
+INFO  [AnonymousIoService-3]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@1f72af3
+INFO  [AnonymousIoService-4]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@1e5f73e
+INFO  [AnonymousIoService-5]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@bde4ac
+INFO  [AnonymousIoService-6]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@efdebd
+INFO  [AnonymousIoService-7]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@1e75713
+INFO  [AnonymousIoService-8]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@93a753
+INFO  [AnonymousIoService-8]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@1ce616b
+INFO  [AnonymousIoService-9]: org.llrp.ltk.generated.messages.RO_ACCESS_REPORT@5df22c
+INFO  [AnonymousIoService-10]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@1c6395b
+INFO  [AnonymousIoService-11]: org.llrp.ltk.generated.messages.READER_EVENT_NOTIFICATION@df8f81

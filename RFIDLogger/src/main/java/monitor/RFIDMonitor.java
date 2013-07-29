@@ -1,7 +1,11 @@
 package monitor;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.concurrent.TimeoutException;
 
@@ -15,6 +19,8 @@ import org.llrp.ltk.generated.messages.ADD_ROSPEC_RESPONSE;
 import org.llrp.ltk.generated.messages.DELETE_ROSPEC;
 import org.llrp.ltk.generated.messages.DISABLE_ROSPEC;
 import org.llrp.ltk.generated.messages.ENABLE_ROSPEC;
+import org.llrp.ltk.generated.messages.GET_READER_CAPABILITIES;
+import org.llrp.ltk.generated.messages.GET_READER_CONFIG;
 import org.llrp.ltk.generated.messages.GET_ROSPECS;
 import org.llrp.ltk.generated.messages.RO_ACCESS_REPORT;
 import org.llrp.ltk.generated.messages.START_ROSPEC;
@@ -23,6 +29,7 @@ import org.llrp.ltk.net.LLRPConnector;
 import org.llrp.ltk.net.LLRPEndpoint;
 import org.llrp.ltk.types.LLRPMessage;
 import org.llrp.ltk.types.UnsignedInteger;
+import org.llrp.ltk.types.UnsignedShort;
 import org.llrp.ltk.util.Util;
 
 // Joseph Sullivan
@@ -49,10 +56,17 @@ public class RFIDMonitor implements LLRPEndpoint {
 			del.setROSpecID(new UnsignedInteger(0));
 			response =  reader.connection.transact(del, 10000);
 			
-			// load ADD_ROSPEC message12
+			
 			logger.info("Loading ADD_ROSPEC message from file ADD_ROSPEC.xml ...");		
-			LLRPMessage addRospec = Util.loadXMLLLRPMessage(new File("/home/joey/SmartWetLab/RFIDLogger/config/ADD_ROSPEC3"));
-	
+		
+				//InputStream rospec = getClass().getResourceAsStream("ADD_ROSPEC");
+				//BufferedReader specreader = new BufferedReader(new InputStreamReader(rospec));
+				//try {
+				//	File add_rospec = new File("/temp/rfid/ADD_ROSPEC");
+				//} catch (Exception e){
+			LLRPMessage addRospec = Util.loadXMLLLRPMessage(new File("/rfid/ADD_ROSPEC"));	
+				
+			
 			// send message to LLRP reader and wait for response
 			logger.info("Sending ADD_ROSPEC message ...");
 			response =  reader.connection.transact(addRospec, 10000);
@@ -87,49 +101,45 @@ public class RFIDMonitor implements LLRPEndpoint {
 		}
 	}
 
-	public RFIDReader GetReader(String IP) throws LLRPConnectionAttemptFailedException{
-		//TODO: Re-comment method. Should be straight forward
+	public RFIDMonitor(String IP){
+		//Attempt to establish connection with the RFID reader
+		try {
+			
+			reader = GetReader(IP);
+			System.out.println("Connection acquired");
+			this.getReaderConfiguration();
+			this.getReaderCapabilities();
+			
+		} catch (LLRPConnectionAttemptFailedException e1) {
+			
+			System.out.println("Exception: Connection Failed");
+			e1.printStackTrace();
+			
+		}
+		Date date = new Date();
+		logger = logger.getRootLogger();
+		logger.debug("Connection Established with " + reader.reader_IP + " at " + Long.toString(date.getTime()));
+		System.out.println("RECORDING...");
+		System.out.println();
+		addROSpec();
 		
-		LLRPConnector connection;
-		connection = new LLRPConnector(this,IP);
-		reader = new RFIDReader(connection,IP);
-		
-		//Try to connect. If Connection fails, increment IP and recall method
-		try{
-
-
-			((LLRPConnector) connection).connect();
-		} catch (LLRPConnectionAttemptFailedException e1){
-			throw e1;
-			} 
-		RFIDReader reader = new RFIDReader(connection,IP);
-				
-		return reader;
 	}
 	
-	@Override
-	public void errorOccured(String arg0) {
-		logger.debug("Error Occured: " + arg0);
-	}
-	@Override
-	public void messageReceived(LLRPMessage arg0) {
-		if(arg0.getClass()== RO_ACCESS_REPORT.class)
-		{
-			Date date = new Date();
-			
-			try {
-				//System.out.println(arg0.toXMLString());
-				reader.inventory.update(arg0.encodeXML(), date.getTime());
-			} catch (InvalidLLRPMessageException e) {
-				e.printStackTrace();
+	public void sendMessage(String messageName){
+		if (messageName.equals("n")){
+			// do nothing
+		}
+		else{
+			LLRPMessage response;
+			try{
+				LLRPMessage request = Util.loadXMLLLRPMessage(new File("/rfid/" + messageName));
+				response = reader.connection.transact(request,10000);
+			} catch (Exception e){
+				e.printStackTrace(); System.exit(1);
 			}
 		}
-		else {
-		}
-		
-		
 	}
-	
+
 	public String getIp(){
 		return reader.reader_IP;
 	}
@@ -150,24 +160,102 @@ public class RFIDMonitor implements LLRPEndpoint {
 		reader.connection.reconnect();
 	}
 	
-	public RFIDMonitor(String IP){
-		//Attempt to establish connection with the RFID reader
-		try {
-			reader = GetReader(IP);
-		} catch (LLRPConnectionAttemptFailedException e1) {
-			System.out.println("Exception: Connection Failed");
-			e1.printStackTrace();
-		}		
-		Date date = new Date();
-		logger = logger.getRootLogger();
-		logger.debug("Connection Established with " + reader.reader_IP + " at " + Long.toString(date.getTime()));
-		System.out.println("RECORDING...");
-		addROSpec();
-		
-		
+	//Gets reader capabilities and writes them to a file
+	public void getReaderConfiguration(){
+		LLRPMessage response;
+		try{
+			System.out.println("Attempting to get reader configuration...");
+			LLRPMessage request = Util.loadXMLLLRPMessage(new File("/rfid/GET_READER_CONFIG"));
+			response = reader.connection.transact(request,10000);
+			
+			String filename = "/tmp/readerconfig";
+			File file = new File(filename);
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(response.toXMLString());
+			bw.close();
+			
+			System.out.println("Success, configuration saved to \t " + filename);
+			
+		} catch (Exception e){
+			e.printStackTrace(); System.exit(1);
+		}
 	}
+	
+	public void getReaderCapabilities(){
+		System.out.println("Attempting to get reader capabilities");
+		LLRPMessage response;
+		try {
+			LLRPMessage request = Util.loadXMLLLRPMessage(new File("/rfid/GET_READER_CAPABILITIES"));
+			response = reader.connection.transact(request,10000);
+			
+			String filename = "/tmp/readercapabilities";
+			File file = new File(filename);
+			if (!file.exists()){
+				file.createNewFile();
+			}
+			
+			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(response.toXMLString());
+			bw.close();
+				
+			System.out.println("Success, capabilities saved to \t \t " + filename);
+			
+		}catch (Exception e){
+				e.printStackTrace(); System.exit(1);
+			}
+	}
+	
 	
 	public void printLog(){
 		reader.inventory.printLog();
+	}
+
+	public RFIDReader GetReader(String IP) throws LLRPConnectionAttemptFailedException{
+		//TODO: Re-comment method. Should be straight forward
+		
+		LLRPConnector connection;
+		connection = new LLRPConnector(this,IP);
+		reader = new RFIDReader(connection,IP);
+		
+		//Try to connect. If Connection fails, increment IP and recall method
+		try{
+	
+	
+			((LLRPConnector) connection).connect();
+		} catch (LLRPConnectionAttemptFailedException e1){
+			throw e1;
+			} 
+		RFIDReader reader = new RFIDReader(connection,IP);
+				
+		return reader;
+	}
+
+	@Override
+	public void messageReceived(LLRPMessage arg0) {
+		if(arg0.getClass()== RO_ACCESS_REPORT.class)
+		{
+			Date date = new Date();
+			
+			try {
+				//System.out.println(arg0.toXMLString());
+				reader.inventory.update(arg0.encodeXML(), date.getTime());
+			} catch (InvalidLLRPMessageException e) {
+				e.printStackTrace();
+			}
+		}
+		else {
+		}
+		
+		
+	}
+
+	@Override
+	public void errorOccured(String arg0) {
+		logger.debug("Error Occured: " + arg0);
 	}
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/home/joey/Downloads/junit-4.10.jar"/>
+	<classpathentry kind="lib" path="Dependencies/jmdns.jar"/>
+	<classpathentry kind="lib" path="Dependencies/ltkjava-1.0.0.7.jar"/>
+	<classpathentry kind="lib" path="LTKJava/lib/activation.jar"/>
+	<classpathentry kind="lib" path="LTKJava/lib/checkstyle-all-4.3.jar"/>
+	<classpathentry kind="lib" path="LTKJava/lib/commons-collections-3.2.jar"/>
+	<classpathentry kind="lib" path="LTKJava/lib/commons-configuration-1.5.jar"/>
+	<classpathentry kind="lib" path="LTKJava/lib/commons-lang-2.3.jar"/>
+	<classpathentry kind="lib" path="LTKJava/lib/jalopy.jar"/>
+	<classpathentry kind="lib" path="LTKJava/lib/jargs.jar"/>
+	<classpathentry kind="lib" path="LTKJava/lib/jaxb-api.jar"/>
+	<classpathentry kind="lib" path="LTKJava/lib/jaxb-impl.jar"/>
+	<classpathentry kind="lib" path="LTKJava/lib/jaxb-xjc.jar"/>
+	<classpathentry kind="lib" path="LTKJava/lib/jdom.jar"/>
+	<classpathentry kind="lib" path="LTKJava/lib/jsr173_1.0_api.jar"/>
+	<classpathentry kind="lib" path="LTKJava/lib/junit-dep-4.4.jar"/>
+	<classpathentry kind="lib" path="LTKJava/lib/log4j-1.2.14.jar"/>
+	<classpathentry kind="lib" path="LTKJava/lib/mina-core-1.1.7.jar"/>
+	<classpathentry kind="lib" path="LTKJava/lib/slf4j-api-1.5.0.jar"/>
+	<classpathentry kind="lib" path="LTKJava/lib/slf4j-log4j12-1.5.0.jar"/>
+	<classpathentry kind="lib" path="LTKJava/lib/velocity-dep-1.5.jar"/>
+	<classpathentry kind="lib" path="LTKJava/lib/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="LTKJava/lib/xmlunit-1.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
