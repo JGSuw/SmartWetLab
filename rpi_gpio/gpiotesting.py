@@ -31,8 +31,10 @@ class door_listener(threading.Thread):
     
     
 if __name__ == '__main__':
-    in_pin = raw_input("Enter input pin header (BOARD): ")
-    out_pin = raw_input("Enter output pin header (BOARD): ")
+    in_pin = int(raw_input("Enter input pin header (BOARD): "))
+    out_pin = int(raw_input("Enter output pin header (BOARD): "))
+    
+    
     
     GPIO.setup(in_pin,GPIO.IN)
     GPIO.setup(out_pin,GPIO.OUT)
