@@ -8,7 +8,7 @@ GPIO.setmode(GPIO.BCM)
 
 class door_listener(threading.Thread):
     def run(self):
-        now = datetime.datetime.now()
+
         if GPIO.input(self.in_pin) == GPIO.HIGH:
             #Switch is initially open, output state is off
             state = 0
@@ -22,7 +22,7 @@ class door_listener(threading.Thread):
                 print 'close'
                 GPIO.output(self.out_pin,GPIO.LOW)
                 state = 0
-            else:
+            elif state == 0:
                 #Switch from off to on, representing door open
                 print 'open'
                 GPIO.output(self.out_pin,GPIO.LOW)
@@ -49,10 +49,12 @@ if __name__ == '__main__':
     GPIO.setup(in_pin,GPIO.IN)
     GPIO.setup(out_pin,GPIO.OUT)
     
+    print "initializing...."
+    time.sleep(5)
     if GPIO.input(in_pin) == False:
         print 'Initially open'
         GPIO.output(out_pin,True)
-    else:
+    elif GPIO.input(in_pin) == True:
         print 'Initially closed'
         GPIO.output(out_pin,False)
     
