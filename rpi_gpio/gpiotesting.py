@@ -33,20 +33,22 @@ class door_listener(threading.Thread):
         pass
         """
         if GPIO.input(self.in_pin) == True:
-            state = True
+            is_open= True
         elif GPIO.input(self.in_pin) == False:
-            state = False
-            
-        while 1:
+            is_open = False
+        
+        self.is_running = True
+        
+        while self.is_running:
             if GPIO.input(self.in_pin) == True:
                 GPIO.output(self.out_pin,True)
-                if state != True:
-                    state = True
+                if is_open != True:
+                    is_open = True
                     print "Switch opened."
             elif GPIO.input(self.in_pin) == False:
                 GPIO.output(self.out_pin,False)
-                if state != False:
-                    state = False
+                if is_open != False:
+                    is_open = False
                     print "Switch Closed"
             time.sleep(1)
                 
@@ -54,13 +56,8 @@ class door_listener(threading.Thread):
     def __init__(self,in_pin,out_pin):
         self.in_pin = in_pin
         self.out_pin = out_pin
-        threading.Thread.__init__(self)
-        pass
-    def stop(self):
-        GPIO.cleanup()
-        threading.Thread.__stop()
-        pass
-    
+        self.is_running = False
+
     
     
 if __name__ == '__main__':
@@ -73,7 +70,6 @@ if __name__ == '__main__':
     GPIO.setup(out_pin,GPIO.OUT)
     
     print "initializing...."
-    time.sleep(5)
     if GPIO.input(in_pin) == False:
         print 'Initially closed'
         GPIO.output(out_pin,False)
@@ -85,5 +81,4 @@ if __name__ == '__main__':
     listener.start()
     
     raw_input("Enter anything to cease execution: ")
-    listener.stop()
-   
+    listener.is_running = False
