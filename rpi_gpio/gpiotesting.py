@@ -8,7 +8,10 @@ GPIO.setmode(GPIO.BCM)
 
 class door_listener(threading.Thread):
     def run(self):
-
+        
+        """
+        Commented out edge detenction implimentation because parity was occasionally flipping. Unreliable
+        
         if GPIO.input(self.in_pin) == GPIO.HIGH:
             #Switch is initially open, output state is off
             state = 0
@@ -28,6 +31,25 @@ class door_listener(threading.Thread):
                 GPIO.output(self.out_pin,GPIO.LOW)
                 state = 1
         pass
+        """
+        if GPIO.input(self.in_pin) == True:
+            state = False
+        elif GPIO.input(self.in_pin) == False:
+            state = True
+            
+        while 1:
+            if GPIO.input(self.in_pin) == True:
+                GPIO.output(self.out_pin,False)
+                if state != False:
+                    state = False
+                    print "Switch closed."
+            elif GPIO.input(self.in_pin) == False:
+                GPIO.output(self.out_pin,True)
+                if state != True:
+                    state = True
+                    print "Switch Opened"
+                
+        
     def __init__(self,in_pin,out_pin):
         self.in_pin = in_pin
         self.out_pin = out_pin
