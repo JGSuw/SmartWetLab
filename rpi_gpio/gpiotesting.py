@@ -49,12 +49,12 @@ if __name__ == '__main__':
     GPIO.setup(in_pin,GPIO.IN)
     GPIO.setup(out_pin,GPIO.OUT)
     
-    if GPIO.input(in_pin) == GPIO.LOW:
+    if GPIO.input(in_pin) == False:
         print 'Initially open'
-        GPIO.output(out_pin,GPIO.HIGH)
+        GPIO.output(out_pin,True)
     else:
         print 'Initially closed'
-        GPIO.output(out_pin,GPIO.LOW)
+        GPIO.output(out_pin,False)
     
     listener = door_listener(in_pin,out_pin)
     listener.start()
