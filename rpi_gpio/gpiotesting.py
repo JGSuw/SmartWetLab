@@ -9,14 +9,24 @@ GPIO.setmode(GPIO.BCM)
 class door_listener(threading.Thread):
     def run(self):
         now = datetime.datetime.now()
+        if GPIO.input(self.in_pin) == GPIO.HIGH:
+            #Switch is initially open, output state is off
+            state = 0
+        else:
+            #Switch is initially closed, output state is on
+            state = 1
         while 1:
             GPIO.wait_for_edge(self.in_pin,GPIO.BOTH)
-            if GPIO.output(self.out_pin) == GPIO.HIGH:
+            if state == 1:
+                #Switch from on to off, representing closed door
                 print 'close'
                 GPIO.output(self.out_pin,GPIO.LOW)
+                state = 0
             else:
+                #Switch from off to on, representing door open
                 print 'open'
                 GPIO.output(self.out_pin,GPIO.LOW)
+                state = 1
         pass
     def __init__(self,in_pin,out_pin):
         self.in_pin = in_pin
@@ -31,8 +41,8 @@ class door_listener(threading.Thread):
     
     
 if __name__ == '__main__':
-    in_pin = int(raw_input("Enter input pin header (BOARD): "))
-    out_pin = int(raw_input("Enter output pin header (BOARD): "))
+    in_pin = int(raw_input("Enter input pin header (BCM): "))
+    out_pin = int(raw_input("Enter output pin header (BCM): "))
     
     
     
