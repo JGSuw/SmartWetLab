@@ -57,7 +57,7 @@ class door_listener(threading.Thread):
         self.in_pin = in_pin
         self.out_pin = out_pin
         self.is_running = False
-        threading.Thread.__init__()
+        threading.Thread.__init__(self)
 
     
     
