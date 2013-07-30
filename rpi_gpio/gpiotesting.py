@@ -83,3 +83,4 @@ if __name__ == '__main__':
     
     raw_input("Enter anything to cease execution: ")
     listener.is_running = False
+    print "goodbye"
