@@ -48,6 +48,7 @@ class door_listener(threading.Thread):
                 if state != True:
                     state = True
                     print "Switch Opened"
+            time.sleep(1)
                 
         
     def __init__(self,in_pin,out_pin):
