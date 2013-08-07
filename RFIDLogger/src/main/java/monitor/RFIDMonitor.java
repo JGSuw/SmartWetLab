@@ -65,7 +65,7 @@ public class RFIDMonitor implements LLRPEndpoint {
 		Date date = new Date();
 		logger = logger.getRootLogger();
 		logger.debug("Connection Established with " + reader.reader_IP + " at " + Long.toString(date.getTime()));
-		
+		addROSpec();
 	}
 
 	public void addROSpec(){

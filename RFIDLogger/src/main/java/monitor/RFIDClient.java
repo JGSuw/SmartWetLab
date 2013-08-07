@@ -40,13 +40,9 @@ public class RFIDClient {
 			connector = new Connector(listener,hostname);
 			delay.schedule(connector, (long)1000);
 			monitor = connector.monitor;
-			
 			if (args.length > 1){
 				monitor.setReaderConfiguration(args[1]);
 			}
-			
-			monitor.addROSpec();
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
