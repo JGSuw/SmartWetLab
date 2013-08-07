@@ -47,7 +47,28 @@ public class RFIDMonitor implements LLRPEndpoint {
 	private  RFIDReader reader;
 	private static Logger logger;	
 
-	private void addROSpec(){
+	public RFIDMonitor(String IP){
+		//Attempt to establish connection with the RFID reader
+		try {
+			
+			reader = GetReader(IP);
+			System.out.println("Connection acquired");
+			this.getReaderConfiguration();
+			this.getReaderCapabilities();
+			
+		} catch (LLRPConnectionAttemptFailedException e1) {
+			
+			System.out.println("Exception: Connection Failed");
+			e1.printStackTrace();
+			
+		}
+		Date date = new Date();
+		logger = logger.getRootLogger();
+		logger.debug("Connection Established with " + reader.reader_IP + " at " + Long.toString(date.getTime()));
+		
+	}
+
+	public void addROSpec(){
 		LLRPMessage response;
 		try{
 			//Delete ROSpec
@@ -94,6 +115,8 @@ public class RFIDMonitor implements LLRPEndpoint {
 			start.setROSpecID(new UnsignedInteger(3));
 			response = reader.connection.transact(start, 10000);
 			logger.info(response);
+			System.out.println("RECORDING...");
+			System.out.println();
 	
 		} catch (Exception e){
 			e.printStackTrace();
@@ -101,30 +124,6 @@ public class RFIDMonitor implements LLRPEndpoint {
 		}
 	}
 
-	public RFIDMonitor(String IP){
-		//Attempt to establish connection with the RFID reader
-		try {
-			
-			reader = GetReader(IP);
-			System.out.println("Connection acquired");
-			this.getReaderConfiguration();
-			this.getReaderCapabilities();
-			
-		} catch (LLRPConnectionAttemptFailedException e1) {
-			
-			System.out.println("Exception: Connection Failed");
-			e1.printStackTrace();
-			
-		}
-		Date date = new Date();
-		logger = logger.getRootLogger();
-		logger.debug("Connection Established with " + reader.reader_IP + " at " + Long.toString(date.getTime()));
-		System.out.println("RECORDING...");
-		System.out.println();
-		addROSpec();
-		
-	}
-	
 	public void sendMessage(String messageName){
 		if (messageName.equals("n")){
 			// do nothing
@@ -182,6 +181,18 @@ public class RFIDMonitor implements LLRPEndpoint {
 			
 		} catch (Exception e){
 			e.printStackTrace(); System.exit(1);
+		}
+	}
+	
+	public void setReaderConfiguration(String filename){
+		System.out.println("Attempting to set reader configuration");
+		LLRPMessage response;
+		try {
+			LLRPMessage request = Util.loadXMLLLRPMessage(new File ("/rfid/" + filename));
+			response = reader.connection.transact(request);
+			System.out.print(response.toString());
+		} catch (Exception e){
+			e.printStackTrace();
 		}
 	}
 	
